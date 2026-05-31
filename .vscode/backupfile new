@@ -12,7 +12,7 @@ one_onefive = random.randint(one, onefive)
 
 player_hp = 100
 
-player_dmg = 10
+player_dmg = 1
 
 enemy_dmg = 20
 
@@ -20,7 +20,7 @@ enemy_dmg_2 = 30
 
 dmg_blocked = .5
 
-enemy_hp = 100
+enemy_hp = 10
 
 blocked = 0
 
@@ -57,8 +57,6 @@ type_enemy_options_2_storage = 0
 show = 0
 
 mode_switch = 0
-
-game_end = 0
 #-need to fix the cooldown if used both i think- i think i fixed it
 
 
@@ -89,9 +87,6 @@ for turn in range(10000000000000000000000000000000000000000000000000000000000000
 
     if mode_switch_input == "2":
         mode_switch = 1
-
-        player_dmg = 5
-
         break
         
     else:
@@ -138,14 +133,21 @@ for turn in range(10000000000000000000000000000000000000000000000000000000000000
                 break
             
             elif player_hp <= 0:
-                turn_left = 0
+                print("")
+                print ('.G.A.M.E.O.V.E.R.')
+                print(f"{user} has been slayened by the monster.")
+                print("You have failed your mission.")
+                print("")
                 break
-                
             
             elif enemy_hp <= 0:
-                turn_left = 0
+                print("")
+                print ('.V.I.C.T.O.R.Y.')
+                print(f"Congratulations, {user} you have slayen the monster!")
+                print("You have saved the island")
+                print("")
+
                 break
-                
             
             else:
                 print("")
@@ -192,42 +194,23 @@ for turn in range(10000000000000000000000000000000000000000000000000000000000000
                     turn_left = max(0, turn_left - 1)
                 
                 elif choice == '3':
-                    if mode_switch == 1:
-                        if usage_sharpness > 0:
-                            enemy_hp = max(0, enemy_hp - (player_dmg + 5))
-                            usage_sharpness = max(0, usage_sharpness - 1)
-                            print("")
-                            print(f"{user} have attacked the monster for {player_dmg + 5} with an enhanced attack")
-                
-                        else:
-                            enemy_hp = max(0, enemy_hp - player_dmg)
-                            print("")
-                            print(f"{user} have attacked the monster for {player_dmg} with a normal attack")
-                    
-                        turn_left = max(0, turn_left - 1)
+                    if usage_sharpness > 0:
+                        enemy_hp = max(0, enemy_hp - (player_dmg + 1))
+                        usage_sharpness = max(0, usage_sharpness - 1)
+                        print("")
+                        print(f"{user} have attacked the monster for {player_dmg + 1} with an enhanced attack")
                 
                     else:
-                        if usage_sharpness > 0:
-                            enemy_hp = max(0, enemy_hp - (player_dmg + 10))
-                            usage_sharpness = max(0, usage_sharpness - 1)
-                            print("")
-                            print(f"{user} have attacked the monster for {player_dmg + 10} with an enhanced attack")
-                
-                        else:
-                            enemy_hp = max(0, enemy_hp - player_dmg)
-                            print("")
-                            print(f"{user} have attacked the monster for {player_dmg} with a normal attack")
+                        enemy_hp = max(0, enemy_hp - player_dmg)
+                        print("")
+                        print(f"{user} have attacked the monster for {player_dmg} with a normal attack")
                     
                     turn_left = max(0, turn_left - 1)
                 
                 elif choice == '4':
-                    print("")
-
                     print (f'mana({mana})')
                     
                     print ('1. return')
-
-                    print("")
                     
                     print ('2. stun (25)')
                     
@@ -236,8 +219,6 @@ for turn in range(10000000000000000000000000000000000000000000000000000000000000
                     
                     else:
                         print ('stun is ready')
-
-                        print("")
                     
                     print ('3. heal% (50)')
                     
@@ -246,8 +227,6 @@ for turn in range(10000000000000000000000000000000000000000000000000000000000000
                     
                     else:
                         print ('heal% is ready')
-
-                        print("")
                    
                     print ('4. sharpness (60)')
                     
@@ -255,9 +234,8 @@ for turn in range(10000000000000000000000000000000000000000000000000000000000000
                         print (f'sharpness cd = {timer_sharpness}')
                     
                     else:
-                        print ('sharpness is ready')
-
                         print("")
+                        print ('sharpness is ready')
                    
                     choice2 = input('pick one of the number options ')
 
@@ -325,14 +303,8 @@ for turn in range(10000000000000000000000000000000000000000000000000000000000000
                             mana = max(0, mana - 60)
                             turn_left = max(0, turn_left - 1)
                             timer_sharpness = 2
-                            
-                            if mode_switch == 1:
-                                print("")
-                                print(f"{user} has sharpened their sword, it now does 10 damage lasting for 2 attacks")
-                            
-                            else:
-                                print("")
-                                print(f"{user} has sharpened their sword, it now does 20 damage lasting for 2 attacks")
+                            print("")
+                            print(f"{user} has sharpened their sword, it now does 2 damage lasting for 2 attacks")
                     
 
                         else:
@@ -376,7 +348,6 @@ for turn in range(10000000000000000000000000000000000000000000000000000000000000
 #3/24/2026 added dialogue so people who test this will not be so confused
         
         if player_hp <= 0:
-            turn_left = 0
             print("")
             print ('.G.A.M.E.O.V.E.R.')
             print(f"{user} has been slayened by the monster.")
@@ -385,7 +356,6 @@ for turn in range(10000000000000000000000000000000000000000000000000000000000000
             break
         
         elif enemy_hp <= 0:
-            turn_left = 0
             print("")
             print ('.V.I.C.T.O.R.Y.')
             print(f"Congratulations, {user} you have slayen the monster!")
@@ -474,7 +444,6 @@ for turn in range(10000000000000000000000000000000000000000000000000000000000000
                     
         
         if player_hp <= 0:
-            turn_left = 0
             print("")
             print ('.G.A.M.E.O.V.E.R.')
             print(f"{user} has been slayened by the monster.")
@@ -483,7 +452,6 @@ for turn in range(10000000000000000000000000000000000000000000000000000000000000
             break
     
         elif enemy_hp <= 0:
-            turn_left = 0
             print("")
             print ('.V.I.C.T.O.R.Y.')
             print(f"Congratulations, {user} you have slayen the monster!")

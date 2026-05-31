@@ -1,5 +1,6 @@
-import random 
-one = 1
-ten = 10
-onetoten = random.randint(one,ten)
-print(f'{onetoten}')
+e = 1
+a = 2
+if a == 1:
+    print(f'a = {a}')
+elif e == 1:
+    print(f'e = {e}')
