@@ -1,0 +1,6 @@
+starting = 1
+double= 2
+choice = input('how many days? ')
+end = min(0, choice(starting * double))
+print (f'{end}')
+#twitch.softbunivt 

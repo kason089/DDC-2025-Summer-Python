@@ -40,23 +40,29 @@ print("We make magical smoothies based on your mood, taste, and style.\n")
 # Ask customer details
 name = input("👤 What's your name? ")
 age = int(input("🎂 How old are you? "))
-mood = input("😎 How are you feeling today? (happy, sleepy, lit, chill, etc): ").lower()
+mood = input("😎 How are you feeling today? (happy, sleepy, lit, chill, exotic, crazy, etc): ").lower()
 sweet = input("🍬 Do you want something sweet? (yes/no): ").lower()
-fruit = input("🍉 What's your favorite fruit? (mango, strawberry, banana, etc): ").lower()
+fruit = input("🍉 What's your favorite fruit? (mango, strawberry, banana, none, etc): ").lower()
 
 # Logic for drink recommendation
 print("\n🧪 Mixing your ingredients...\n")
 
 if age < 10:
     drink = "Baby Banana Bash with extra sprinkles 🍌✨"
+elif name == "william.a" and sweet == "no" and mood == "crazy":
+    drink = "aviation cocktail with a slice of bitter orange – mixed to the bitter 😖"
 elif sweet == "yes" and mood == "happy":
     drink = "Super Strawberry Sunshine with rainbow jelly 🍓🌈"
 elif sweet == "no" and mood == "sleepy":
     drink = "Calm Coconut Chill – with low sugar 🥥😴"
+elif mood == "exotic" and age >20:
+    drink = f"{fruit.title()} moonshine – for the old timey sake ⏳🥃"
 elif fruit == "mango":
     drink = "Mango Mystery Blast – only for the bold 🥭🔥"
 elif mood == "lit":
     drink = "Electric Energy Elixir – caffeine + sparkle ⚡💥"
+elif mood == "exotic" and age >20:
+    drink = f"{fruit.title()} moonshine – for the old timey sake ⏳🥃"
 else:
     drink = f"Classic {fruit.title()} Cooler 🍹"
 
@@ -66,4 +72,7 @@ print(f"{name}, we recommend: {drink}")
 print("Enjoy and come back soon!\n")
 
 # Add a signature stamp
-print("🔖 Juice Bar Stamp: ✅ 🍍 Served with love.")
+if name == "william.a" and sweet == "no" and mood == "crazy":
+    print ("🔖 Juice Bar Stamp: ✅ 💀 Served with despite.")
+else:
+    print("🔖 Juice Bar Stamp: ✅ 🍍 Served with love.")

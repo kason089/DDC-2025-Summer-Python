@@ -1,0 +1,5 @@
+import random 
+one = 1
+ten = 10
+onetoten = random.randint(one,ten)
+print(f'{onetoten}')

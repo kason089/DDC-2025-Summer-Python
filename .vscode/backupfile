@@ -1,0 +1,169 @@
+player_hp = 100
+player_dmg = 1
+enemy_dmg = 20
+dmg_blocked = .5
+enemy_hp = 10
+blocked = 0
+turn_left = 2
+heal_percent = 0.75
+stun = 0
+mana = 75
+timer_stun = 0
+timer_healpercent = 0
+heal_percent2 = 0.20
+turn_add = 0
+timer_sharpness = 0
+usage_sharpness = 0
+timer_turn_add = 0
+#-need to fix the cooldown if used both i think- i think i fixed it
+
+
+
+for turn in range(100000000000000000000000000000000000000000):
+    if turn_left >= 1:
+        if turn_add >0:
+            turn_left = max(0, turn_left + turn_add)
+            turn_add = 0
+        elif timer_stun >0:
+            timer_stun = max(0, timer_stun - 1)
+        elif timer_healpercent >0:
+            timer_healpercent = max(0, timer_healpercent - 1)
+        elif timer_sharpness >0:
+            timer_sharpness = max(0, timer_sharpness - 1)
+        elif timer_turn_add >0:
+            timer_turn_add = max(0,timer_turn_add - 1)
+        mana = min(250, mana + 25)
+        for turn in range(100000000000000000000000000000000000000):
+            if turn_left <= 0:
+                print ('end turn')
+                break
+            elif player_hp <= 0:
+                break
+            elif enemy_hp <= 0:
+                break
+            else:
+                print (f'hp({player_hp}) en({enemy_hp}) mp({mana})')
+                print ('1. block damage')
+                print ('2. heal')
+                print ('3. attack')
+                print ('4. magic')
+                print ('5. skip')
+                print (f'turns left ({turn_left})')
+                if timer_turn_add >0:
+                    print(f'not ready ({timer_turn_add})')
+                else:
+                    print('ready')
+                choice = input('pick one of the number options ')
+
+                if  choice == '1':
+                    blocked = 1
+                    turn_left = max(0, turn_left - turn_left)
+                elif choice == '2':
+                    player_hp = min(100, player_hp + (player_hp*heal_percent2)+5)
+                    turn_left = max(0, turn_left - 1)
+                elif choice == '3':
+                    if usage_sharpness > 0:
+                        enemy_hp = max(0, enemy_hp - (player_dmg + 1))
+                        usage_sharpness = max(0, usage_sharpness - 1)
+                    else:
+                        enemy_hp = max(0, enemy_hp - player_dmg)
+                    turn_left = max(0, turn_left - 1)
+                elif choice == '4':
+                    print (f'mana({mana})')
+                    print ('1. return')
+                    print ('2. stun (25)')
+                    if timer_stun >0:
+                        print (f'stun cd = {timer_stun}')
+                    else:
+                        print ('stun is ready')
+                    print ('3. heal% (50)')
+                    if timer_healpercent >0:
+                        print (f'heal% cd = {timer_healpercent}')
+                    else:
+                        print ('heal% is ready')
+                    print ('4. sharpness (60)')
+                    if timer_sharpness >0:
+                        print (f'sharpness cd = {timer_sharpness}')
+                    else:
+                        print ('sharpness is ready')
+                    choice2 = input('pick one of the number options ')
+
+                    if choice2 == '1':
+                        print('returning to main screen...')
+                    elif choice2 == '2':
+                        if mana >= 25 and timer_stun == 0:
+                            stun = 1
+                            mana = max(0, mana - 25)
+                            turn_left = max(0, turn_left - 1)
+                            timer_stun = 3
+                            print (' you tased the enemy with a taser')
+                        else:
+                            if mana < 25:
+                                print('not enough mana')
+                            elif timer_stun > 0:
+                                print('skill still on cooldown')
+                            else:
+                                print('not enough mana and skill still on cooldown')
+                    elif choice2 == '3':
+                        if mana >= 25 and timer_healpercent == 0:
+                            player_hp = min(100, player_hp + (player_hp*heal_percent))
+                            mana = max(0, mana - 50)
+                            turn_left = max(0, turn_left - 1)
+                            timer_healpercent = 4
+                        else:
+                            if mana < 25:
+                                print('not enough mana')
+                            elif timer_healpercent > 0:
+                                print('skill still on cooldown')
+                            else:
+                                print('not enough mana and skill still on cooldown')
+                    elif choice2 == "4":
+                        usage_sharpness = 2
+                        mana = max(0, mana - 60)
+                        turn_left = max(0, turn_left - 1)
+                        timer_sharpness = 2
+                    else:
+                        print ('invalid option')
+                elif choice == "5":
+                    if timer_turn_add >0:
+                        print ('not ready')
+                    else:
+                        turn_add = max(0, turn_add + turn_left)
+                        turn_left = max(0, turn_left - turn_left)
+                        timer_turn_add = 1
+                else:  
+                    print ('invalid option')
+    else:
+        
+        if blocked == 1:
+            player_hp = min(100, player_hp - (enemy_dmg * dmg_blocked))
+            blocked = 0
+            #mana = max(100, mana + 25)
+            turn_left = 2
+            print ('player has blocked dmg')
+            if player_hp <= 0:
+                print ('.G.A.M.E.O.V.E.R.')
+                break
+        elif enemy_hp <= 0:
+            print ('.V.I.C.T.O.R.Y.')
+            break
+        elif player_hp <= 0:
+            print ('.G.A.M.E.O.V.E.R.')
+            break
+        
+        elif stun == 1:
+            print('enemy is stuned')
+            turn_left = 2
+            #mana = max(100, mana + 25)
+            timer_stun = 2
+            stun = 0
+            
+        else:
+            player_hp = max(0, player_hp - enemy_dmg)
+            blocked = 0
+            #mana = max(100, mana + 25)
+            turn_left = 2
+            print ('player took dmg')
+            if player_hp <= 0:
+                print ('.G.A.M.E.O.V.E.R.')
+                break

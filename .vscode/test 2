@@ -1,0 +1,35 @@
+player_hp = 100
+player_dmg = 1
+enemy_dmg = 25
+dmg_blocked = 1.25
+enemy_hp = 10
+blocked = 0
+turn_left = 2
+test = 0
+
+
+for turn in range(10000000000000000000000000000):
+    import random
+    try:
+    # Define the range
+        start = 1
+        end = 20
+
+    # Generate a random integer between start and end (inclusive)
+        random_number = random.randint(start, end)
+
+        print(f"Random number between {start} and {end}: {random_number}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    if random_number >=20:
+        print('best gamble')
+    elif 10< random_number < 20:
+        print('norml gamble')
+    elif 1 < random_number <10:
+        print('bad gamble')
+    else:
+        print('worst gamble')
+    test = max(0, test + 1)
+    if random_number == 20:
+        print(f'{test}')
+        break
