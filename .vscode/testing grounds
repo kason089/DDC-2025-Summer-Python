@@ -364,6 +364,9 @@ for turn in range(10000000000000000000000000000000000000000000000000000000000000
                 
                 elif choice == 'show rng':
                     show = 1
+
+                elif choice == 'enemy heal test':
+                    type_enemy_options_2 = 20
                 
                 else:  
                     print ('invalid option')
@@ -406,7 +409,7 @@ for turn in range(10000000000000000000000000000000000000000000000000000000000000
             if type_enemy_options_2 >= one_twozero:
                 type_enemy_options_2 = 1
                 type_enemy_options_2_storage = 0
-                enemy_hp = min (10, enemy_hp + 1)
+                enemy_hp = min (100, enemy_hp + 1)
                 print("")
                 print('monster has regained health')
              
